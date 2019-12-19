@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/admin.css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Admin Panel</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li>
+                    @Html.ActionLink("Countries", "Index", "Countries")
+                </li>
+                <li>
+                    @Html.ActionLink("Sales", "Index", "Sales")
+                </li>
+                <li>
+                    <a href="#hotels" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Hotels</a>
+                    <ul class="collapse list-unstyled" id="hotels">
+                        <li>
+                            <a href="#">Hotels</a>
+                        </li>
+                        <li>
+                            @Html.ActionLink("Hotel types", "Index", "HotelTypes")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Food", "Index", "Food")
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#tours" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Tours</a>
+                    <ul class="collapse list-unstyled" id="tours">
+                        <li>
+                            <a href="#">Tours</a>
+                        </li>
+                        <li>
+                            <a href="#">Tours pages</a>
+                        </li>
+                        <li>
+                            <a href="#">Tour types</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">Orders</a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid px-0">
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+                </div>
+            </nav>
+
+            @RenderBody()
+
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    @Scripts.Render("~/Scripts/sidebar.init.js")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,44 @@
+﻿@model TravelAgency.Web.Areas.Admin.Models.Food.FoodViewModel
+
+@{
+    ViewBag.Title = "Питание";
+}
+
+@Html.AntiForgeryToken()
+
+<div class="col-12 px-0">
+    @Html.ActionLink("Добавить", "Create", null, htmlAttributes: new { @class = "btn btn-success mb-3" })
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-left">Name</th>
+                <th class="text-left">Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Food)
+            {
+            <tr>
+                <td class="text-left">@item.Name</td>
+                <td class="text-left">@item.Description</td>
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-success far fa-edit" })
+                    <a href="#" class="btn btn-danger btn-sm far fa-trash-alt delete" data-url="@Url.Action("Delete", new { id=item.Id})" data-id="@item.Id" data-replace="@Url.Action("Index")" data-toggle="modal" data-target="#deleteModal"></a>
+                </td>
+            </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
+@Html.Partial("_PopUpDelete")
+
+@section scripts {
+    @Scripts.Render("~/Scripts/delete.item.js")
+}
