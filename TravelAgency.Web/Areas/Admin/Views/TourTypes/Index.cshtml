@@ -1,7 +1,7 @@
-﻿@model TravelAgency.Web.Areas.Admin.Models.Countries.CountriesViewModel
+﻿@model TravelAgency.Web.Areas.Admin.Models.TourTypes.TourTypesViewModel
 
 @{
-    ViewBag.Title = "Страны";
+    ViewBag.Title = "Типы туров";
 }
 
 @Html.AntiForgeryToken()
@@ -19,7 +19,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.Countries)
+            @foreach (var item in Model.TourTypes)
             {
                 <tr>
                     <td class="text-left">@item.Name</td>

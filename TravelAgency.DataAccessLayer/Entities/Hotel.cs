@@ -14,5 +14,7 @@ namespace TravelAgency.DataAccessLayer.Entities
         public string Description { get; set; }
         public int HotelTypeId { get; set; }
         public HotelType HotelType { get; set; }
+        public int? FoodId { get; set; }
+        public Food Food { get; set; }
     }
 }

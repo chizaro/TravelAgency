@@ -42,7 +42,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Admin.cs" />
-    <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\Country.cs" />
     <Compile Include="Entities\Food.cs" />
     <Compile Include="Entities\Hotel.cs" />
@@ -53,8 +52,8 @@
     <Compile Include="Entities\TourPage.cs" />
     <Compile Include="Entities\TourType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QueryOrder.cs" />
     <Compile Include="Repositories\IAdminRepository.cs" />
-    <Compile Include="Repositories\IClientRepository.cs" />
     <Compile Include="Repositories\ICountryRepository.cs" />
     <Compile Include="Repositories\IFoodRepository.cs" />
     <Compile Include="Repositories\IHotelRepository.cs" />

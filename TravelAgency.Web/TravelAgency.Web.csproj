@@ -145,28 +145,38 @@
     <Compile Include="Areas\Admin\Controllers\HotelTypesController.cs" />
     <Compile Include="Areas\Admin\Controllers\SalesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ToursController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TourTypesController.cs" />
     <Compile Include="Areas\Admin\Models\Countries\CountriesViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Countries\CountryCreateViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Countries\CountryEditViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Food\FoodCreateViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Food\FoodEditViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Food\FoodViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Hotels\HotelCreateViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Hotels\HotelEditViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Hotels\HotelsViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HotelTypes\HotelTypeCreateViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HotelTypes\HotelTypeEditViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HotelTypes\HotelTypesViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Sales\SaleCreateViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Sales\SaleEditViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Sales\SalesViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\TourTypes\TourTypeCreateViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\TourTypes\TourTypeEditViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\TourTypes\TourTypesViewModel.cs" />
     <Compile Include="AutoMapperProfiles\CountryProfile.cs" />
     <Compile Include="AutoMapperProfiles\FoodProfile.cs" />
+    <Compile Include="AutoMapperProfiles\HotelProfile.cs" />
     <Compile Include="AutoMapperProfiles\HotelTypeProfile.cs" />
     <Compile Include="AutoMapperProfiles\SaleProfile.cs" />
+    <Compile Include="AutoMapperProfiles\TourTypeProfile.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Ninject\Module.cs" />
     <Compile Include="Ninject\NinjectConfiguration.cs" />
+    <Compile Include="PageCounter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +238,12 @@
     <Content Include="Areas\Admin\Views\HotelTypes\Index.cshtml" />
     <Content Include="Areas\Admin\Views\HotelTypes\Create.cshtml" />
     <Content Include="Areas\Admin\Views\HotelTypes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Hotels\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Hotels\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\TourTypes\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\TourTypes\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\TourTypes\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Hotels\Edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -338,7 +354,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Views\Hotels\" />
     <Folder Include="Areas\Admin\Views\Tours\" />
     <Folder Include="Models\" />
   </ItemGroup>

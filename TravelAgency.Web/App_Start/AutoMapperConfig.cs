@@ -17,6 +17,8 @@ namespace TravelAgency.Web.App_Start
                 cfg.AddProfile<SaleProfile>();
                 cfg.AddProfile<FoodProfile>();
                 cfg.AddProfile<HotelTypeProfile>();
+                cfg.AddProfile<HotelProfile>();
+                cfg.AddProfile<TourTypeProfile>();
             });
 
             return configuration;

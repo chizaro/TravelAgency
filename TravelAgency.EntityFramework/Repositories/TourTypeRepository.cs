@@ -13,5 +13,11 @@ namespace TravelAgency.EntityFramework.Repositories
         public TourTypeRepository(TravelAgencyContext context) : base(context)
         {
         }
+
+        public (IList<TourType> tourTypes, int count) GetPyPage(int pageNumber, int pageCapacity)
+        {
+            var tourTypes = dbSet.AsNoTracking().OrderBy(c => c.Name);
+            return (tourTypes.Skip(pageNumber * pageCapacity).Take(pageCapacity).ToList(), tourTypes.Count());
+        }
     }
 }

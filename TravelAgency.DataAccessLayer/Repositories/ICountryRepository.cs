@@ -9,5 +9,6 @@ namespace TravelAgency.DataAccessLayer.Repositories
 {
     public interface ICountryRepository : IRepository<Country>
     {
+        (IList<Country> countries, int count) GetPyPage(int pageNumber, int pageCapacity);
     }
 }

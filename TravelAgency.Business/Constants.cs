@@ -8,5 +8,10 @@ namespace TravelAgency.Business
 {
     public static class Constants
     {
+        public static class Paging
+        {
+            public const int DefaultPagingSize = 3;
+        }
+        
     }
 }

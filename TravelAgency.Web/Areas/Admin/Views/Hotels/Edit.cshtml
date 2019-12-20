@@ -1,0 +1,76 @@
+﻿@model TravelAgency.Web.Areas.Admin.Models.Hotels.HotelEditViewModel
+
+@{
+    ViewBag.Title = "Редактировать отель";
+    var hotelTypeSelectList = new SelectList(Model.HotelTypes, "Id", "Name", Model.HotelTypeId);
+    var foodSelectList = new SelectList(Model.Food, "Id", "Name", Model.FoodId);
+}
+<div class="container-fluid">
+    <h2 class="col mt-3">Редактирова отель:</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.EditorFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group mt-2">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                    <small>@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })</small>
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                @Html.LabelFor(model => model.Class, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Class, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                    <small>@Html.ValidationMessageFor(model => model.Class, "", new { @class = "text-danger" })</small>
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                @Html.LabelFor(model => model.HotelTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.HotelTypeId, hotelTypeSelectList, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                @Html.LabelFor(model => model.FoodId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.FoodId, foodSelectList, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                    <small>@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })</small>
+                </div>
+            </div>
+
+            @for (int i = 0; i < Model.HotelTypes.Count; i++)
+            {
+                @Html.HiddenFor(model => Model.HotelTypes[i].Id)
+                @Html.HiddenFor(model => Model.HotelTypes[i].Name)
+            }
+
+            @for (int i = 0; i < Model.Food.Count; i++)
+            {
+                @Html.HiddenFor(model => Model.Food[i].Id)
+                @Html.HiddenFor(model => Model.Food[i].Name)
+            }
+
+            <div class="form-group">
+                <div class="col-10 d-flex">
+                    <div>
+                        <input type="submit" value="Сохранить" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+

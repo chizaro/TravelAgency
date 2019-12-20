@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using TravelAgency.DataAccessLayer.Repositories;
@@ -49,6 +50,13 @@ namespace TravelAgency.EntityFramework.Repositories
         {
             context.Entry(entity).State = EntityState.Modified;
             context.SaveChanges();
+        }
+
+        protected IQueryable<TEntity> Include(params Expression<Func<TEntity, object>>[] includeProperties)
+        {
+            IQueryable<TEntity> query = dbSet.AsNoTracking();
+            return includeProperties
+                .Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
         }
     }
 }

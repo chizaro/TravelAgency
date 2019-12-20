@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TravelAgency.Business;
 using TravelAgency.DataAccessLayer.Entities;
 using TravelAgency.DataAccessLayer.Repositories;
 using TravelAgency.EntityFramework;
@@ -25,10 +26,21 @@ namespace TravelAgency.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(int page = 0)
         {
-            var countries = countryRepository.GetAll();
-            return View(new CountriesViewModel { Countries = countries });
+            var (countries, count) = countryRepository.GetPyPage(page, Constants.Paging.DefaultPagingSize);
+
+            int totalPages = PageCounter.CountTotalPages(count, Constants.Paging.DefaultPagingSize);
+            if (page > totalPages || page < 0)
+                return HttpNotFound();
+
+            var countriesViewModel = new CountriesViewModel
+            {
+                Countries = countries,
+                PageNumber = page,
+                TotalPages = totalPages
+            };
+            return View(countriesViewModel);
         }
 
         [HttpGet]

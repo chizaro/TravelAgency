@@ -13,5 +13,11 @@ namespace TravelAgency.EntityFramework.Repositories
         public CountryRepository(TravelAgencyContext context) : base(context)
         {
         }
+
+        public (IList<Country> countries, int count) GetPyPage(int pageNumber, int pageCapacity)
+        {
+            var countries = dbSet.AsNoTracking().OrderBy(c => c.Name);
+            return (countries.Skip(pageNumber * pageCapacity).Take(pageCapacity).ToList(), countries.Count());
+        }
     }
 }

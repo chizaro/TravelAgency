@@ -54,7 +54,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AdminRepository.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
-    <Compile Include="Repositories\ClientRepository.cs" />
     <Compile Include="Repositories\CountryRepository.cs" />
     <Compile Include="Repositories\FoodRepository.cs" />
     <Compile Include="Repositories\HotelRepository.cs" />
@@ -70,7 +69,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\TravelAgency.DataAccessLayer\TravelAgency.DataAccessLayer.csproj">
       <Project>{2648da23-5537-4cf0-a74e-849c346f6a33}</Project>

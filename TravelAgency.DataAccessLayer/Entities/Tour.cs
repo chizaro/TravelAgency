@@ -38,10 +38,6 @@ namespace TravelAgency.DataAccessLayer.Entities
 
         public Country Country { get; set; }
 
-        public int? FoodId { get; set; }
-
-        public Food Food { get; set; }
-
         public int? SaleId { get; set; }
 
         public Sale Sale { get; set; }

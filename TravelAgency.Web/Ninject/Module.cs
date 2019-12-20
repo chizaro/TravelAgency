@@ -23,8 +23,8 @@ namespace TravelAgency.Web.Ninject
             Bind<ISaleRepository>().To<SaleRepository>();
             Bind<IHotelTypeRepository>().To<HotelTypeRepository>();
             Bind<IFoodRepository>().To<FoodRepository>();
-            Bind<IHotelRepository>().To<IHotelRepository>();
-
+            Bind<IHotelRepository>().To<HotelRepository>();
+            Bind<ITourTypeRepostiory>().To<TourTypeRepository>();
 
             var mapperConfiguration = new AutoMapperConfig().Configure();
             Bind<MapperConfiguration>().ToConstant(mapperConfiguration).InSingletonScope();

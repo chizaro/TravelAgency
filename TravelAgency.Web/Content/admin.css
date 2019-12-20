@@ -97,7 +97,7 @@ a:focus {
 #sidebar ul li.active > a,
 a[aria-expanded="true"] {
     color: #fff;
-    background: #6d7fcc;
+    background: #343A40;
 }
 
 a[data-toggle="collapse"] {
@@ -115,7 +115,6 @@ a[data-toggle="collapse"] {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
 }
 
 ul.CTAs {
@@ -128,11 +127,6 @@ ul.CTAs a {
     display: block;
     border-radius: 5px;
     margin-bottom: 5px;
-}
-
-a.download {
-    background: #fff;
-    color: #7386D5;
 }
 
 a.article,
