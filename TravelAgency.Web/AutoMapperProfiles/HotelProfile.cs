@@ -12,8 +12,14 @@ namespace TravelAgency.Web.AutoMapperProfiles
     {
         public HotelProfile()
         {
-            CreateMap<HotelCreateViewModel, Hotel>().ForMember(h => h.Food, opt => opt.Ignore());
-            CreateMap<HotelEditViewModel, Hotel>().ForMember(h => h.Food, opt => opt.Ignore());
+            CreateMap<HotelCreateViewModel, Hotel>()
+                .AfterMap((source, dest) => dest.FoodId = dest.FoodId == 0 ? null : dest.FoodId)
+                .ForMember(h => h.Food, opt => opt.Ignore());
+
+            CreateMap<HotelEditViewModel, Hotel>()
+                .AfterMap((source, dest) => dest.FoodId = dest.FoodId == 0 ? null : dest.FoodId)
+                .ForMember(h => h.Food, opt => opt.Ignore());
+
             CreateMap<Hotel, HotelEditViewModel>().ForMember(h => h.Food, opt => opt.Ignore());
         }
     }

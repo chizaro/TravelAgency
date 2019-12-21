@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TravelAgency.DataAccessLayer.Entities;
+using FoodItem = TravelAgency.DataAccessLayer.Entities.Food;
 
 namespace TravelAgency.Web.Areas.Admin.Models.Hotels
 {
@@ -19,7 +20,7 @@ namespace TravelAgency.Web.Areas.Admin.Models.Hotels
         [DisplayName("Класс отеля (кол-во звёзд): ")]
         [Required(ErrorMessage = "Это обязательное поле")]
         [Range(1, 5, ErrorMessage = "Значение должно быть в диапазоне от 1 до 5")]
-        public byte Class { get; set; }
+        public byte Class { get; set; } = 1;
 
         [DisplayName("Описание: ")]
         [DataType(DataType.MultilineText)]
@@ -33,6 +34,6 @@ namespace TravelAgency.Web.Areas.Admin.Models.Hotels
         [DisplayName("Питание: ")]
         public int FoodId { get; set; }
 
-        public IList<TravelAgency.DataAccessLayer.Entities.Food> Food { get; set; }
+        public List<FoodItem> Food { get; set; } = new List<FoodItem> { new FoodItem { Name = string.Empty } };
     }
 }

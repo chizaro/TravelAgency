@@ -16,7 +16,7 @@ namespace TravelAgency.EntityFramework.Repositories
 
         public BaseRepository(TravelAgencyContext context)
         {
-            this.context = context;
+            this.context = context ?? throw new ArgumentNullException();
             dbSet = this.context.Set<TEntity>();
         }
 

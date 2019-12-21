@@ -50,11 +50,10 @@ namespace TravelAgency.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var hotelViewModel = new HotelCreateViewModel
-            {
-                HotelTypes = hotelTypeRepository.GetAll(),
-                Food = foodRepository.GetAll()
-            };
+            var hotelViewModel = new HotelCreateViewModel();
+            hotelViewModel.HotelTypes = hotelTypeRepository.GetAll();
+            hotelViewModel.Food.AddRange(foodRepository.GetAll());
+
             return View(hotelViewModel);
         }
 
@@ -79,7 +78,7 @@ namespace TravelAgency.Web.Areas.Admin.Controllers
 
             var hotelEditModel = mapper.Map<HotelEditViewModel>(hotel);
             hotelEditModel.HotelTypes = hotelTypeRepository.GetAll();
-            hotelEditModel.Food = foodRepository.GetAll();
+            hotelEditModel.Food.AddRange(foodRepository.GetAll());
 
             return View(hotelEditModel);
         }

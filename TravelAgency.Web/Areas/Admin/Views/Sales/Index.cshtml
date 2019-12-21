@@ -1,7 +1,7 @@
 ﻿@model TravelAgency.Web.Areas.Admin.Models.Sales.SalesViewModel
 
 @{
-    ViewBag.Title = "Sales";
+    ViewBag.Title = "Скидки";
 }
 
 @Html.AntiForgeryToken()
@@ -27,7 +27,11 @@
                     <td class="text-left">@item.Size</td>
                     <td>
                         @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-success far fa-edit" })
-                        <a href="#" class="btn btn-danger btn-sm far fa-trash-alt delete" data-url="@Url.Action("Delete", new { id=item.Id})" data-id="@item.Id" data-replace="@Url.Action("Index")" data-toggle="modal" data-target="#deleteModal"></a>
+                        @{
+                            int page = Model.Sales.Count() > 1 || Model.PageNumber == 0 ? Model.PageNumber : Model.PageNumber - 1;
+                        }
+                        <a href="#" class="btn btn-danger btn-sm far fa-trash-alt delete" data-url="@Url.Action("Delete", new { id=item.Id})"
+                           data-replace="@Url.Action("Index", new { page = page})" data-toggle="modal" data-target="#deleteModal"></a>
                     </td>
                 </tr>
             }

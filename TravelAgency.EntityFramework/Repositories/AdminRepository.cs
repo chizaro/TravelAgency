@@ -18,5 +18,16 @@ namespace TravelAgency.EntityFramework.Repositories
         {
             return dbSet.Where(a => a.Login == login).FirstOrDefault();
         }
+
+        public (IList<Admin> admins, int count) GetPyPage(int pageNumber, int pageCapacity)
+        {
+            var admins = dbSet.AsNoTracking().OrderBy(a => a.FirstName).ThenBy(a => a.LastName);
+            return (admins.Skip(pageNumber * pageCapacity).Take(pageCapacity).ToList(), admins.Count());
+        }
+
+        public bool IsExist(string login)
+        {
+            return GetByLogin(login) != null;
+        }
     }
 }

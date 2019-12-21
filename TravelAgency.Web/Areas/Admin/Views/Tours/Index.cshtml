@@ -1,0 +1,56 @@
+﻿@model TravelAgency.Web.Models.Tours.ToursViewModel
+
+@{
+    ViewBag.Title = "Список туров";
+}
+
+@Html.AntiForgeryToken()
+
+<div class="col-12 px-0">
+    @Html.ActionLink("Добавить", "Create", null, htmlAttributes: new { @class = "btn btn-success mb-3" })
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-left">Name</th>
+                <th class="text-left">Price</th>
+                <th class="text-left">Departure city</th>
+                <th class="text-left">Departure date</th>
+                <th class="text-left">Arrival date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Tours)
+            {
+                <tr>
+                    <td class="text-left">@item.Name</td>
+                    <td>@item.Price</td>
+                    <td class="text-left">@item.DepartureCity</td>
+                    <td class="text-left">@item.DepartureDate.ToShortDateString()</td>
+                    <td class="text-left">@item.ArrivalDate.ToShortDateString()</td>
+                    <td>
+                        @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-success far fa-edit" })
+                        @{
+                            int page = Model.Tours.Count() > 1 || Model.PageNumber == 0 ? Model.PageNumber : Model.PageNumber - 1;
+                        }
+                        <a href="#" class="btn btn-danger btn-sm far fa-trash-alt delete" data-url="@Url.Action("Delete", new { id=item.Id})"
+                           data-replace="@Url.Action("Index", new { page = page})" data-toggle="modal" data-target="#deleteModal"></a>
+                        <a href="#" title="Подробно" class="btn btn-info btn-sm fas fa-window-maximize delete" data-url="@Url.Action("Details", new { id=item.Id})"
+                           data-replace="@Url.Action("Index")", data-toggle="modal" data-target="#deleteModal"></a>
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
+@Html.Partial("_PopUpDelete")
+
+@section scripts {
+    @Scripts.Render("~/Scripts/delete.item.js")
+}

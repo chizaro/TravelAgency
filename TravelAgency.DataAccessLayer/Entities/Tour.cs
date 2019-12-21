@@ -20,10 +20,6 @@ namespace TravelAgency.DataAccessLayer.Entities
 
         public DateTime ArrivalDate { get; set; }
 
-        public byte Days { get; set; }
-
-        public byte Nights { get; set; }
-
         public string ShortDescription { get; set; }
 
         public int TourTypeId { get; set; }
@@ -34,7 +30,7 @@ namespace TravelAgency.DataAccessLayer.Entities
 
         public Hotel Hotel { get; set; }
 
-        public int CountryId { get; set; }
+        public int? CountryId { get; set; }
 
         public Country Country { get; set; }
 

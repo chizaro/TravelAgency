@@ -1,0 +1,137 @@
+﻿@model TravelAgency.Web.Areas.Admin.Models.Tours.TourEditViewModel
+
+@{
+    ViewBag.Title = "Редактировать тур";
+    var tourTypeSelectList = new SelectList(Model.TourTypes, "Id", "Name");
+    var hotelSelectList = new SelectList(Model.Hotels, "Id", "Name", Model.HotelId);
+    var countrySelectList = new SelectList(Model.Countries, "Id", "Name", Model.CountryId);
+    var saleSelectList = new SelectList(Model.Sales, "Id", "Name", Model.SaleId);
+    var tourPageSelectList = new SelectList(Model.TourPages, "Id", "Title", Model.TourPageId);
+}
+<div class="container-fluid">
+    <h2 class="col mt-3">Редактировать тур:</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.EditorFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group mt-2">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                    <small>@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })</small>
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                    <small>@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })</small>
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                @Html.LabelFor(model => model.DepartureCity, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DepartureCity, new { htmlAttributes = new { @class = "form-control" } })
+                    <small>@Html.ValidationMessageFor(model => model.DepartureCity, "", new { @class = "text-danger" })</small>
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                @Html.LabelFor(model => model.DepartureDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DepartureDate, new { htmlAttributes = new { @class = "form-control" } })
+                    <small>@Html.ValidationMessageFor(model => model.DepartureDate, "", new { @class = "text-danger" })</small>
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                @Html.LabelFor(model => model.ArrivalDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ArrivalDate, new { htmlAttributes = new { @class = "form-control" } })
+                    <small>@Html.ValidationMessageFor(model => model.ArrivalDate, "", new { @class = "text-danger" })</small>
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                @Html.LabelFor(model => model.ShortDescription, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ShortDescription, new { htmlAttributes = new { @class = "form-control" } })
+                    <small>@Html.ValidationMessageFor(model => model.ShortDescription, "", new { @class = "text-danger" })</small>
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                @Html.LabelFor(model => model.TourTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.TourTypeId, tourTypeSelectList, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.CountryId, countrySelectList, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                @Html.LabelFor(model => model.HotelId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.HotelId, hotelSelectList, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                @Html.LabelFor(model => model.SaleId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.SaleId, saleSelectList, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                @Html.LabelFor(model => model.TourPageId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.TourPageId, tourPageSelectList, new { @class = "form-control" })
+                    <small>@Html.ValidationMessageFor(model => model.TourPageId, "", new { @class = "text-danger" })</small>
+                </div>
+            </div>
+
+            @for (int i = 0; i < Model.TourTypes.Count; i++)
+            {
+                @Html.HiddenFor(model => Model.TourTypes[i].Id)
+                @Html.HiddenFor(model => Model.TourTypes[i].Name)
+            }
+
+            @for (int i = 0; i < Model.Countries.Count; i++)
+            {
+                @Html.HiddenFor(model => Model.Countries[i].Id)
+                @Html.HiddenFor(model => Model.Countries[i].Name)
+            }
+
+            @for (int i = 0; i < Model.Hotels.Count; i++)
+            {
+                @Html.HiddenFor(model => Model.Hotels[i].Id)
+                @Html.HiddenFor(model => Model.Hotels[i].Name)
+            }
+
+            @for (int i = 0; i < Model.Sales.Count; i++)
+            {
+                @Html.HiddenFor(model => Model.Sales[i].Id)
+                @Html.HiddenFor(model => Model.Sales[i].Name)
+            }
+
+            @for (int i = 0; i < Model.TourPages.Count; i++)
+            {
+                @Html.HiddenFor(model => Model.TourPages[i].Id)
+                @Html.HiddenFor(model => Model.TourPages[i].Title)
+            }
+
+            <div class="form-group">
+                <div class="col-10 d-flex">
+                    <div>
+                        <input type="submit" value="Сохранить" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+

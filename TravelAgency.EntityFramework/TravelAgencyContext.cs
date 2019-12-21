@@ -34,9 +34,6 @@ namespace TravelAgency.EntityFramework
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Food>().ToTable("Food");
-
-            modelBuilder.Entity<Tour>().Property(p => p.Nights).HasColumnName("NumberOfNights");
-            modelBuilder.Entity<Tour>().Property(p => p.Days).HasColumnName("NumberOfDays");
         }
     }
 }
