@@ -24,22 +24,22 @@ namespace TravelAgency.DataAccessLayer.Entities
 
         public int TourTypeId { get; set; }
 
-        public TourType TourType { get; set; }
+        public virtual TourType TourType { get; set; }
 
         public int? HotelId { get; set; }
 
-        public Hotel Hotel { get; set; }
+        public virtual Hotel Hotel { get; set; }
 
         public int? CountryId { get; set; }
 
-        public Country Country { get; set; }
+        public virtual Country Country { get; set; }
 
         public int? SaleId { get; set; }
 
-        public Sale Sale { get; set; }
+        public virtual Sale Sale { get; set; }
 
         public int? TourPageId { get; set; }
 
-        public TourPage TourPage { get; set; }
+        public virtual TourPage TourPage { get; set; }
     }
 }

@@ -67,7 +67,7 @@ namespace TravelAgency.Web.Areas.Admin.Models.Tours
         public List<Sale> Sales { get; set; } = new List<Sale> { new Sale { Name = string.Empty } };
 
         [DisplayName("Страница тура ")]
-        [Remote("IsTourPageAvailable", "Tours", HttpMethod = "POST", AdditionalFields = "Id", ErrorMessage = "Данная страница уже используется")]
+        [Remote("IsTourPageAvailable", "Tours", HttpMethod = "GET", AdditionalFields = "Id", ErrorMessage = "Данная страница уже используется")]
         public int TourPageId { get; set; }
 
         public List<TourPage> TourPages { get; set; } = new List<TourPage> { new TourPage { Title = string.Empty } };

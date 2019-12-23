@@ -1,0 +1,42 @@
+﻿@model TravelAgency.DataAccessLayer.Entities.Tour
+
+<div class="modal fade" id="tourInfoModal" tabindex="-1" role="dialog" aria-labelledby="tourInfoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="tourInfoModalLabel">Информация о туре</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>@Model.Name</p>
+                <p>Тип: @Model.TourType.Name</p>
+                <p>Цена: @(Model.Price) грн</p>
+                <p>Город вылета: @Model.DepartureCity</p>
+                <p>Дата отправления: @Model.DepartureDate.ToShortDateString()</p>
+                <p>Дата прибытия: @Model.ArrivalDate.ToShortDateString()</p>
+                <p>@Model.ShortDescription</p>
+                @if (Model.Country != null)
+                {
+                    <p>Страна: @Model.Country.Name</p>
+                }
+                @if (Model.Hotel != null)
+                {
+                    <p>@Model.Hotel.HotelType.Name: @Model.Hotel.Name</p>
+                    if (Model.Hotel.Food != null)
+                    {
+                        <p>Питание: @Model.Hotel.Food.Name</p>
+                    }
+                }
+            </div>
+            <div class="modal-footer justify-content-start">
+                @if (Model.Sale != null)
+                {
+                    <p>Скидка: @Model.Sale.Name (@(Model.Sale.Size)%)</p>
+                    <p>Цена с учётом скидки: @(Model.Price * ((100 - Model.Sale.Size) / 100)) грн</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>

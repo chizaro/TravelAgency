@@ -28,5 +28,18 @@ namespace TravelAgency.EntityFramework.Repositories
             tours = order == QueryOrder.Asc ? tours.OrderBy(orderBy) : tours.OrderByDescending(orderBy);
             return (tours.Skip(pageNumber * pageCapacity).Take(pageCapacity).ToList(), tours.Count());
         }
+
+        public (IList<Tour> tours, int count) GetPyPage(int pageNumber, int pageCapacity, int countryId, DateTime dateFrom,
+            DateTime dateTo, params Expression<Func<Tour, object>>[] includeProperties)
+        {
+            var tours = Include(includeProperties)
+                .Where(t => t.CountryId == countryId || countryId == 0)
+                .Where(t => (dateFrom == DateTime.MinValue && dateTo == DateTime.MinValue) ||
+                (dateTo == DateTime.MinValue && t.DepartureDate >= dateFrom) ||
+                (t.DepartureDate >= dateFrom && t.DepartureDate <= dateTo))
+                .OrderBy(t => t.DepartureDate);
+
+            return (tours.Skip(pageNumber * pageCapacity).Take(pageCapacity).ToList(), tours.Count());
+        }
     }
 }

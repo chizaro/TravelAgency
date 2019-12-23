@@ -7,8 +7,6 @@ using System.Web.Mvc;
 using TravelAgency.Business;
 using TravelAgency.DataAccessLayer.Entities;
 using TravelAgency.DataAccessLayer.Repositories;
-using TravelAgency.EntityFramework;
-using TravelAgency.EntityFramework.Repositories;
 using TravelAgency.Web.App_Start;
 using TravelAgency.Web.Areas.Admin.Models.Countries;
 

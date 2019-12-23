@@ -13,6 +13,9 @@ namespace TravelAgency.DataAccessLayer.Repositories
         (IList<Tour> tours, int count) GetPyPage<TOrderKey>(int pageNumber, int pageCapacity, Expression<Func<Tour, TOrderKey>> orderBy,
             QueryOrder order, params Expression<Func<Tour, object>>[] includeProperties);
 
+        (IList<Tour> tours, int count) GetPyPage(int pageNumber, int pageCapacity, int countryId, DateTime dateFrom, DateTime dateTo,
+             params Expression<Func<Tour, object>>[] includeProperties);
+
         Tour GetByTourPageId(int id);
     }
 }

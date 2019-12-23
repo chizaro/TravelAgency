@@ -14,7 +14,7 @@ namespace TravelAgency.Web.Areas.Admin.Models.Account
         [DisplayName("Логин")]
         [Required]
         [StringLength(50, ErrorMessage = "Login не должен превышать 50 символов")]
-        [Remote("IsUserExist", "Account", "Admin", HttpMethod = "POST", ErrorMessage = "Пользователь с таким именем уже существует")]
+        [Remote("IsUserExist", "Account", "Admin", HttpMethod = "GET", ErrorMessage = "Пользователь с таким именем уже существует")]
         public string Login { set; get; }
 
         [DisplayName("Имя")]

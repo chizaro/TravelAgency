@@ -14,9 +14,17 @@ namespace TravelAgency.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Tour info",
+                url: "{controller}/{action}/{url}",
+                defaults: new { controller = "Tours", action = "Details" },
+                namespaces: new[] { "TravelAgency.Web.Controllers" }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Tours", action = "List", id = UrlParameter.Optional },
+                namespaces: new[] { "TravelAgency.Web.Controllers" }
             );
         }
     }

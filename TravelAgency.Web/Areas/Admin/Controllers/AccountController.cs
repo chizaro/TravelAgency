@@ -76,10 +76,10 @@ namespace TravelAgency.Web.Areas.Admin.Controllers
             return RedirectToAction("Index", "Tours");
         }
 
-        [HttpPost]
+        [HttpGet]
         public JsonResult IsUserExist(string login)
         {
-            return Json(!adminRepository.IsExist(login));
+            return Json(!adminRepository.IsExist(login), JsonRequestBehavior.AllowGet);
         }
     }
 }

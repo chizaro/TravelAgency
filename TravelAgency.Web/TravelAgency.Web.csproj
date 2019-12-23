@@ -172,6 +172,7 @@
     <Compile Include="Areas\Admin\Models\TourPages\TourPageEditViewModel.cs" />
     <Compile Include="Areas\Admin\Models\TourPages\TourPagesViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Tours\TourEditViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Tours\ToursViewModel.cs" />
     <Compile Include="Areas\Admin\Models\TourTypes\TourTypeCreateViewModel.cs" />
     <Compile Include="Areas\Admin\Models\TourTypes\TourTypeEditViewModel.cs" />
     <Compile Include="Areas\Admin\Models\TourTypes\TourTypesViewModel.cs" />
@@ -184,7 +185,7 @@
     <Compile Include="AutoMapperProfiles\TourPageProfile.cs" />
     <Compile Include="AutoMapperProfiles\TourProfile.cs" />
     <Compile Include="AutoMapperProfiles\TourTypeProfile.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ToursController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -204,6 +205,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Images\default.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
@@ -269,6 +271,7 @@
     <Content Include="Areas\Admin\Views\Tours\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Tours\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Tours\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Tours\_TourInfo.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -473,6 +476,7 @@
     <Content Include="Scripts\tinymce\themes\silver\theme.min.js" />
     <Content Include="Scripts\tinymce\tinymce.js" />
     <Content Include="Scripts\tinymce\tinymce.min.js" />
+    <Content Include="Scripts\tours.list.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -489,9 +493,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper.js.flow" />
@@ -506,6 +507,9 @@
     <Content Include="Scripts\tinymce\skins\ui\oxide\fonts\tinymce-mobile.woff" />
     <Content Include="Scripts\tinymce\skins\ui\oxide-dark\fonts\tinymce-mobile.woff" />
     <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Scripts\tour.info.js" />
+    <Content Include="Views\Tours\List.cshtml" />
+    <Content Include="Views\Tours\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

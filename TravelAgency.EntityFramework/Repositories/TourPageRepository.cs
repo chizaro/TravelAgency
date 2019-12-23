@@ -14,6 +14,11 @@ namespace TravelAgency.EntityFramework.Repositories
         {
         }
 
+        public TourPage GetByUrl(string url)
+        {
+            return dbSet.Where(t => t.Url == url).FirstOrDefault();
+        }
+
         public (IList<TourPage> pages, int count) GetPyPage(int pageNumber, int pageCapacity)
         {
             var pages = dbSet.AsNoTracking().OrderBy(p => p.Title);

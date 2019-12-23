@@ -7,10 +7,7 @@ using System.Web.Mvc;
 using TravelAgency.DataAccessLayer;
 using TravelAgency.DataAccessLayer.Entities;
 using TravelAgency.DataAccessLayer.Repositories;
-using TravelAgency.EntityFramework;
-using TravelAgency.EntityFramework.Repositories;
 using TravelAgency.Web.Areas.Admin.Models.Tours;
-using TravelAgency.Web.Models.Tours;
 using static TravelAgency.Business.Constants;
 
 namespace TravelAgency.Web.Areas.Admin.Controllers
@@ -107,17 +104,24 @@ namespace TravelAgency.Web.Areas.Admin.Controllers
             return Json(true);
         }
 
-        [HttpPost]
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            var tour = tourRepository.Get(id);
+            return PartialView("_TourInfo", tour);
+        }
+
+        [HttpGet]
         public JsonResult IsTourPageAvailable(int tourPageId, int? id)
         {
             var tour = tourRepository.GetByTourPageId(tourPageId);
             if (tour == null)
-                return Json(true);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
             if (tour.Id == id)
-                return Json(true);
+                return Json(true, JsonRequestBehavior.AllowGet);
 
-            return Json(false);
+            return Json(false, JsonRequestBehavior.AllowGet);
         }
 
         private void FillTourViewModel(TourEditViewModel tourViewModel)

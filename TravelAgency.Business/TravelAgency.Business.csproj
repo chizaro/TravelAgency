@@ -44,7 +44,13 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\Hashing.cs" />
+    <Compile Include="TourPriceSetter.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\TravelAgency.DataAccessLayer\TravelAgency.DataAccessLayer.csproj">
+      <Project>{2648DA23-5537-4CF0-A74E-849C346F6A33}</Project>
+      <Name>TravelAgency.DataAccessLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

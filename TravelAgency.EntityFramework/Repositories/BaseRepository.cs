@@ -35,9 +35,9 @@ namespace TravelAgency.EntityFramework.Repositories
             return dbSet.Find(id);
         }
 
-        public IList<TEntity> GetAll()
+        public IList<TEntity> GetAll(params Expression<Func<TEntity, object>>[] includeProperties)
         {
-            return dbSet.AsNoTracking().ToList();
+            return Include(includeProperties).ToList();
         }
 
         public void Save(TEntity entity)
