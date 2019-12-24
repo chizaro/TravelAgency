@@ -37,6 +37,7 @@ namespace TravelAgency.EntityFramework.Repositories
                 .Where(t => (dateFrom == DateTime.MinValue && dateTo == DateTime.MinValue) ||
                 (dateTo == DateTime.MinValue && t.DepartureDate >= dateFrom) ||
                 (t.DepartureDate >= dateFrom && t.DepartureDate <= dateTo))
+                .Where(t => t.TourPage != null)
                 .OrderBy(t => t.DepartureDate);
 
             return (tours.Skip(pageNumber * pageCapacity).Take(pageCapacity).ToList(), tours.Count());

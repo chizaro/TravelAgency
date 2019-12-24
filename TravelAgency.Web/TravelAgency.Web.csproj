@@ -145,6 +145,7 @@
     <Compile Include="Areas\Admin\Controllers\FoodController.cs" />
     <Compile Include="Areas\Admin\Controllers\HotelsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HotelTypesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Admin\Controllers\SalesController.cs" />
     <Compile Include="Areas\Admin\Controllers\TourPagesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ToursController.cs" />
@@ -165,12 +166,14 @@
     <Compile Include="Areas\Admin\Models\HotelTypes\HotelTypeCreateViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HotelTypes\HotelTypeEditViewModel.cs" />
     <Compile Include="Areas\Admin\Models\HotelTypes\HotelTypesViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Orders\OrdersViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Sales\SaleCreateViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Sales\SaleEditViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Sales\SalesViewModel.cs" />
     <Compile Include="Areas\Admin\Models\TourPages\TourPageCreateViewModel.cs" />
     <Compile Include="Areas\Admin\Models\TourPages\TourPageEditViewModel.cs" />
     <Compile Include="Areas\Admin\Models\TourPages\TourPagesViewModel.cs" />
+    <Compile Include="Areas\Admin\Models\Tours\TourCreateViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Tours\TourEditViewModel.cs" />
     <Compile Include="Areas\Admin\Models\Tours\ToursViewModel.cs" />
     <Compile Include="Areas\Admin\Models\TourTypes\TourTypeCreateViewModel.cs" />
@@ -181,14 +184,19 @@
     <Compile Include="AutoMapperProfiles\FoodProfile.cs" />
     <Compile Include="AutoMapperProfiles\HotelProfile.cs" />
     <Compile Include="AutoMapperProfiles\HotelTypeProfile.cs" />
+    <Compile Include="AutoMapperProfiles\OrderProfile.cs" />
     <Compile Include="AutoMapperProfiles\SaleProfile.cs" />
     <Compile Include="AutoMapperProfiles\TourPageProfile.cs" />
     <Compile Include="AutoMapperProfiles\TourProfile.cs" />
     <Compile Include="AutoMapperProfiles\TourTypeProfile.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ToursController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Managers\ImageManager.cs" />
+    <Compile Include="Models\Orders\OrderViewModel.cs" />
+    <Compile Include="Models\TourPages\TourPageViewModel.cs" />
     <Compile Include="Models\Tours\ToursViewModel.cs" />
     <Compile Include="Ninject\Module.cs" />
     <Compile Include="Ninject\NinjectConfiguration.cs" />
@@ -272,6 +280,9 @@
     <Content Include="Areas\Admin\Views\Tours\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Tours\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Tours\_TourInfo.cshtml" />
+    <Content Include="Scripts\image.preview.js" />
+    <Content Include="Areas\Admin\Views\Orders\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\_PopUpOrderCancel.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -510,9 +521,14 @@
     <Content Include="Scripts\tour.info.js" />
     <Content Include="Views\Tours\List.cshtml" />
     <Content Include="Views\Tours\Details.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Shared\_PopUpSuccessOrder.cshtml" />
+    <Content Include="Scripts\order.cancel.js" />
+    <Content Include="Scripts\order.create.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Reports\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

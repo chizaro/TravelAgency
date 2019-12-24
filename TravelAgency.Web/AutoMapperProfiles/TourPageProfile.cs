@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using TravelAgency.DataAccessLayer.Entities;
 using TravelAgency.Web.Areas.Admin.Models.TourPages;
+using TravelAgency.Web.Models.TourPages;
 
 namespace TravelAgency.Web.AutoMapperProfiles
 {
@@ -15,6 +16,7 @@ namespace TravelAgency.Web.AutoMapperProfiles
             CreateMap<TourPageCreateViewModel, TourPage>();
             CreateMap<TourPageEditViewModel, TourPage>();
             CreateMap<TourPage, TourPageEditViewModel>();
+            CreateMap<TourPage, TourPageViewModel>();
         }
     }
 }

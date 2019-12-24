@@ -1,12 +1,22 @@
-﻿@model TravelAgency.DataAccessLayer.Entities.TourPage
-@{
-    ViewBag.Title = Model.Title;
-}
+﻿@model TravelAgency.Web.Models.TourPages.TourPageViewModel
+    @{
+        ViewBag.Title = Model.Title;
+    }
 
-<section class="container px-0">
-    <div>
-        @Html.Raw(Model.Description)
-    </div>
-</section>
+    <section class="container px-0">
+        <div>
+            @Html.Raw(Model.Description)
+        </div>
+
+        <hr />
+        @Html.Action("Create", "Orders", new { id = Model.TourId })
+    </section>
+
+    @section scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/Scripts/order.create.js")
+    }
+
+
 
 

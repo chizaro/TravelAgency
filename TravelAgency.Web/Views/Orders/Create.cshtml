@@ -1,0 +1,53 @@
+﻿@model TravelAgency.Web.Models.Orders.OrderViewModel
+
+<div class="bg-light">
+    <h2 class="ml-2">Оставьте вашу заявку для заказа тура</h2>
+    @using (@Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.EditorFor(model => model.Date)
+        @Html.EditorFor(model => model.TourId)
+
+        <div class="form-group">
+
+            <div class="form-group mt-2">
+                @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                    <small>@Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })</small>
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                    <small>@Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })</small>
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                    <small>@Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })</small>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-10 d-flex">
+                    <div>
+                        <input type="submit" value="Заказать тур" class="btn btn-primary mb-3" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@Html.Partial("_PopUpSuccessOrder")
+
+
+
+
+
+
+

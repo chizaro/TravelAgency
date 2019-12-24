@@ -27,6 +27,12 @@ input[type="checkbox"].input-validation-error {
     padding: 0;
 }
 
+input[type="file"] {
+    color: transparent;
+    width: 150px;
+}
+
+
 .wrapper {
     min-height: calc(100vh - 220px);
 }

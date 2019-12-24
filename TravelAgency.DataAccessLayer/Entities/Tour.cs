@@ -20,6 +20,8 @@ namespace TravelAgency.DataAccessLayer.Entities
 
         public DateTime ArrivalDate { get; set; }
 
+        public string ImageName { get; set; }
+
         public string ShortDescription { get; set; }
 
         public int TourTypeId { get; set; }

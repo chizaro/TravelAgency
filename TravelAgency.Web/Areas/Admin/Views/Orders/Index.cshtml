@@ -1,0 +1,80 @@
+﻿@model TravelAgency.Web.Areas.Admin.Models.Orders.OrdersViewModel
+
+@{
+    ViewBag.Title = "Заказы";
+}
+
+@Html.AntiForgeryToken()
+
+<div class="col-12 px-0">
+    @using (Html.BeginForm("CreateReport", "Orders", FormMethod.Get, htmlAttributes: new { @class = "form-inline d-flex justify-content-end" }))
+    {
+        <div class="form-group mx-sm-3 mb-2">
+            <input type="date" id="datee" name="date" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+        </div>
+        <input type="submit" value="Сохранить в pdf" class="btn btn-primary mb-2" />
+    }
+</div>
+
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-left">Order date</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Surname</th>
+                <th class="text-left">Phone number</th>
+                <th class="text-center">Tour</th>
+                <th class="text-left">Departure date</th>
+                <th class="text-center">Canceled</th>
+                <th class="text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Orders)
+            {
+                <tr>
+                    <td class="text-center">@item.Date.ToShortDateString()</td>
+                    <td class="text-center">@item.FirstName</td>
+                    <td class="text-center">@item.LastName</td>
+                    <td class="text-center">@item.PhoneNumber</td>
+                    <td class="text-left">@item.Tour.Name</td>
+                    <td class="text-center">@item.Tour.DepartureDate.ToShortDateString()</td>
+                    <td class="text-center">@(item.IsCanceled ? "Да" : "Нет")</td>
+                    <td class="text-center">
+                        @{
+                            int page = Model.Orders.Count() > 1 || Model.PageNumber == 0 ? Model.PageNumber : Model.PageNumber - 1;
+                        }
+                        <a href="#" class="btn btn-danger btn-sm far fa-trash-alt delete" data-url="@Url.Action("Delete", new { id=item.Id})"
+                           data-replace="@Url.Action("Index", new { page = page})" data-toggle="modal" data-target="#deleteModal"></a>
+                        <a href="#" title="Отменить заказ" class="btn btn-info btn-sm fas fa-bell-slash cancel-order" data-url="@Url.Action("Cancel", new { id=item.Id})"
+                           data-replace="@Url.Action("Index", new { page = Model.PageNumber})" data-toggle="modal" data-target="#cancelModal"></a>
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
+@if (Model.TotalPages > 1)
+{
+    <ul class="pagination pagination justify-content-end">
+        @for (int i = 0; i < Model.TotalPages; i++)
+        {
+            <li class="page-item @(i==Model.PageNumber ? "active" : string.Empty)">
+                @Html.ActionLink((i + 1).ToString(), "Index", new { page = i }, htmlAttributes: new { @class = "page-link" })
+            </li>
+        }
+    </ul>
+}
+
+@Html.Partial("_PopUpDelete")
+@Html.Partial("_PopUpOrderCancel")
+
+@section scripts {
+    @Scripts.Render("~/Scripts/delete.item.js")
+    @Scripts.Render("~/Scripts/order.cancel.js")
+}

@@ -11,6 +11,7 @@ namespace TravelAgency.Business
         public static class Paging
         {
             public const int DefaultPagingSize = 3;
+            public const int ToursPagingSize = 5;
         }
         
     }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using TravelAgency.DataAccessLayer.Entities;
@@ -12,8 +13,10 @@ namespace TravelAgency.Web.AutoMapperProfiles
     {
         public TourProfile()
         {
+            CreateMap<TourCreateViewModel, Tour>().AfterMap((source, dest) => MapTour(dest));
+            CreateMap<Tour, TourEditViewModel>()
+                .AfterMap((source, dest) => dest.ImagePath = ConfigurationManager.AppSettings["imagePath"] + source.ImageName);
             CreateMap<TourEditViewModel, Tour>().AfterMap((source, dest) => MapTour(dest));
-            CreateMap<Tour, TourEditViewModel>();
         }
 
         private static void MapTour(Tour tour)

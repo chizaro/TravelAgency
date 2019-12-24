@@ -77,9 +77,6 @@ namespace TravelAgency.Web.Areas.Admin.Controllers
                 return HttpNotFound();
 
             var hotelEditModel = mapper.Map<HotelEditViewModel>(hotel);
-            hotelEditModel.HotelTypes = hotelTypeRepository.GetAll();
-            hotelEditModel.Food.AddRange(foodRepository.GetAll());
-
             return View(hotelEditModel);
         }
 

@@ -8,6 +8,7 @@ using TravelAgency.DataAccessLayer;
 using TravelAgency.DataAccessLayer.Entities;
 using TravelAgency.DataAccessLayer.Repositories;
 using TravelAgency.Web.Areas.Admin.Models.Tours;
+using TravelAgency.Web.Managers;
 using static TravelAgency.Business.Constants;
 
 namespace TravelAgency.Web.Areas.Admin.Controllers
@@ -55,19 +56,20 @@ namespace TravelAgency.Web.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            var tourViewModel = new TourEditViewModel();
+            var tourViewModel = new TourCreateViewModel();
             FillTourViewModel(tourViewModel);
             return View(tourViewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(TourEditViewModel tourViewModel)
+        public ActionResult Create(TourCreateViewModel tourViewModel)
         {
             if (!ModelState.IsValid)
                 return View(tourViewModel);
 
             var tour = mapper.Map<Tour>(tourViewModel);
+            tour.ImageName = ImageManager.SaveImage(tourViewModel.Image);
             tourRepository.Save(tour);
             return RedirectToAction("Index");
         }
@@ -91,7 +93,15 @@ namespace TravelAgency.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
                 return View(tourViewModel);
 
+            string fileName = null;
+            if (tourViewModel.Image != null)
+            {
+                ImageManager.DeleteImage(tourViewModel.ImageName);
+                fileName = ImageManager.SaveImage(tourViewModel.Image);
+            }
+
             var tour = mapper.Map<Tour>(tourViewModel);
+            tour.ImageName = fileName ?? tourViewModel.ImageName;
             tourRepository.Update(tour);
             return RedirectToAction("Index");
         }
@@ -100,7 +110,12 @@ namespace TravelAgency.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public JsonResult Delete(int id)
         {
+            var tour = tourRepository.Get(id);
+            if (tour == null)
+                return Json(false);
+
             tourRepository.Delete(id);
+            ImageManager.DeleteImage(tour.ImageName);
             return Json(true);
         }
 
@@ -114,17 +129,22 @@ namespace TravelAgency.Web.Areas.Admin.Controllers
         [HttpGet]
         public JsonResult IsTourPageAvailable(int tourPageId, int? id)
         {
-            var tour = tourRepository.GetByTourPageId(tourPageId);
-            if (tour == null)
-                return Json(true, JsonRequestBehavior.AllowGet);
-
-            if (tour.Id == id)
-                return Json(true, JsonRequestBehavior.AllowGet);
-
-            return Json(false, JsonRequestBehavior.AllowGet);
+            return Json(CheckTourPageAvailability(tourPageId, id), JsonRequestBehavior.AllowGet);
         }
 
-        private void FillTourViewModel(TourEditViewModel tourViewModel)
+        private bool CheckTourPageAvailability(int tourPageId, int? id)
+        {
+            var tour = tourRepository.GetByTourPageId(tourPageId);
+            if (tour == null)
+                return true;
+
+            if (tour.Id == id)
+                return true;
+
+            return false;
+        }
+
+        private void FillTourViewModel(TourCreateViewModel tourViewModel)
         {
             tourViewModel.TourTypes = tourTypeRepostiory.GetAll();
             tourViewModel.Countries.AddRange(countryRepository.GetAll());

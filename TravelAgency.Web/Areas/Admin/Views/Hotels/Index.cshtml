@@ -25,27 +25,39 @@
         <tbody>
             @foreach (var item in Model.Hotels)
             {
-            <tr>
-                <td class="text-left">@item.Name</td>
-                <td>@item.Class</td>
-                <td class="text-left">@item.HotelType.Name</td>
-                <td class="text-left">@(item.Food?.Name)</td>
-                <td class="text-left">@item.Description</td>
-                <td>
-                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-success far fa-edit" })
-                    @{
-                        int page = Model.Hotels.Count() > 1 || Model.PageNumber == 0 ? Model.PageNumber : Model.PageNumber - 1;
-                    }
-                    <a href="#" class="btn btn-danger btn-sm far fa-trash-alt delete" data-url="@Url.Action("Delete", new { id=item.Id})"
-                       data-replace="@Url.Action("Index", new { page = page})" data-toggle="modal" data-target="#deleteModal"></a>
-                </td>
-            </tr>
+                <tr>
+                    <td class="text-left">@item.Name</td>
+                    <td>@item.Class</td>
+                    <td class="text-left">@item.HotelType.Name</td>
+                    <td class="text-left">@(item.Food?.Name)</td>
+                    <td class="text-left">@item.Description</td>
+                    <td>
+                        @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "btn btn-sm btn-success far fa-edit" })
+                        @{
+                            int page = Model.Hotels.Count() > 1 || Model.PageNumber == 0 ? Model.PageNumber : Model.PageNumber - 1;
+                        }
+                        <a href="#" class="btn btn-danger btn-sm far fa-trash-alt delete" data-url="@Url.Action("Delete", new { id=item.Id})"
+                           data-replace="@Url.Action("Index", new { page = page})" data-toggle="modal" data-target="#deleteModal"></a>
+                    </td>
+                </tr>
             }
 
 
         </tbody>
     </table>
 </div>
+
+@if (Model.TotalPages > 1)
+{
+    <ul class="pagination pagination justify-content-end">
+        @for (int i = 0; i < Model.TotalPages; i++)
+        {
+            <li class="page-item @(i==Model.PageNumber ? "active" : string.Empty)">
+                @Html.ActionLink((i + 1).ToString(), "Index", new { page = i }, htmlAttributes: new { @class = "page-link" })
+            </li>
+        }
+    </ul>
+}
 
 @Html.Partial("_PopUpDelete")
 

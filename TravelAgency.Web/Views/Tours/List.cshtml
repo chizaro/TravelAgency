@@ -7,21 +7,21 @@
 
 <section class="container mt-4 px-0 mx-0">
     <div class="navbar navbar-fixed-top col-12 px-0">
-        @using (Html.BeginForm("List", "Tours", FormMethod.Get, new { @class = "row" }))
+        @using (Html.BeginForm("List", "Tours", FormMethod.Get))
         {
-        <div class="form-inline d-flex flex-sm-nowrap">
+            <div class="form-inline d-flex flex-sm-nowrap">
 
-            @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label mx-2 pt-3 pt-sm-0 pr-2" })
-            @Html.DropDownListFor(model => model.CountryId, countrySelectList, htmlAttributes: new { @class = "form-control px-1 mx-2 mx-sm-0" })
+                @Html.LabelFor(model => model.CountryId, htmlAttributes: new { @class = "control-label pt-3 ml-md-0 ml-2 pt-sm-0 pr-2" })
+                @Html.DropDownListFor(model => model.CountryId, countrySelectList, htmlAttributes: new { @class = "form-control px-1 mx-2 mx-sm-0" })
 
-            @Html.LabelFor(model => model.DateFrom, htmlAttributes: new { @class = "control-label mx-2 pt-3 pt-sm-0 pr-2" })
-            @Html.EditorFor(model => model.DateFrom, new { htmlAttributes = new { @class = "form-control px-1 mx-2 mx-sm-0" } })
+                @Html.LabelFor(model => model.DateFrom, htmlAttributes: new { @class = "control-label ml-md-3 ml-2 pt-3 pt-sm-0 pr-2" })
+                @Html.EditorFor(model => model.DateFrom, new { htmlAttributes = new { @class = "form-control px-1 mx-2 mx-sm-0" } })
 
-            @Html.LabelFor(model => model.DateTo, htmlAttributes: new { @class = "control-label mx-2 pt-3 pt-sm-0 pr-2" })
-            @Html.EditorFor(model => model.DateTo, new { htmlAttributes = new { @class = "form-control px-1 mx-2 mx-sm-0" } })
+                @Html.LabelFor(model => model.DateTo, htmlAttributes: new { @class = "control-label ml-md-3 ml-2 pt-3 pt-sm-0 pr-2" })
+                @Html.EditorFor(model => model.DateTo, new { htmlAttributes = new { @class = "form-control px-1 mx-2 mx-sm-0" } })
 
-            <input type="submit" value="Apply" class="btn btn-primary ml-2 mt-md-0 mt-3 mt-sm-0" />
-        </div>
+                <input type="submit" value="Apply" class="btn btn-primary ml-2 mt-md-0 mt-3 mt-sm-0" />
+            </div>
         }
     </div>
     @if (Model.Tours.Count == 0)
@@ -33,7 +33,7 @@
     {
         <div class="mt-4 mb-0 d-flex flex-wrap">
             <div class="d-inline-block col-md-3 col-12 p-0 h-auto">
-                <img class="img-fluid w-100" src="~/Content/Images/default.jpg" alt="@item.Name" />
+                <img class="img-fluid w-100" src="@Url.Content("~/Content/Images/" + item.ImageName)" alt="@item.Name" />
             </div>
             <div class="col-md-9 col-12 pl-4">
                 <div class="row">
@@ -55,7 +55,7 @@
             @for (int i = 0; i < Model.TotalPages; i++)
             {
                 <li class="page-item @(i==Model.PageNumber ? "active" : string.Empty)">
-                    @Html.ActionLink((i + 1).ToString(), "Index", new { page = i }, htmlAttributes: new { @class = "page-link" })
+                    @Html.ActionLink((i + 1).ToString(), "List", new { page = i }, htmlAttributes: new { @class = "page-link" })
                 </li>
             }
         </ul>
