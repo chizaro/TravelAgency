@@ -47,6 +47,7 @@
     <Compile Include="Entities\Hotel.cs" />
     <Compile Include="Entities\HotelType.cs" />
     <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Sale.cs" />
     <Compile Include="Entities\Tour.cs" />
     <Compile Include="Entities\TourPage.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Repositories\IHotelTypeRepository.cs" />
     <Compile Include="Repositories\IOrderRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\IRoleRepository.cs" />
     <Compile Include="Repositories\ISaleRepository.cs" />
     <Compile Include="Repositories\ITourPageRepository.cs" />
     <Compile Include="Repositories\ITourRepository.cs" />

@@ -179,6 +179,7 @@
     <Compile Include="Areas\Admin\Models\TourTypes\TourTypeCreateViewModel.cs" />
     <Compile Include="Areas\Admin\Models\TourTypes\TourTypeEditViewModel.cs" />
     <Compile Include="Areas\Admin\Models\TourTypes\TourTypesViewModel.cs" />
+    <Compile Include="AuthorizeAttribute.cs" />
     <Compile Include="AutoMapperProfiles\AdminProfile.cs" />
     <Compile Include="AutoMapperProfiles\CountryProfile.cs" />
     <Compile Include="AutoMapperProfiles\FoodProfile.cs" />
@@ -204,6 +205,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="403.html" />
+    <Content Include="404.html" />
+    <Content Include="500.html" />
     <Content Include="Content\admin.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -528,6 +532,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\Errors\" />
     <Folder Include="Content\Reports\" />
   </ItemGroup>
   <ItemGroup>

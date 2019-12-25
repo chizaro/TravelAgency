@@ -10,6 +10,7 @@ using TravelAgency.Web.Areas.Admin.Models.HotelTypes;
 
 namespace TravelAgency.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Tour manager")]
     public class HotelTypesController : Controller
     {
         private readonly IHotelTypeRepository hotelTypeRepository;

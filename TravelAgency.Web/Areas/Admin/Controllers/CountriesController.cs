@@ -12,6 +12,7 @@ using TravelAgency.Web.Areas.Admin.Models.Countries;
 
 namespace TravelAgency.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Tour manager")]
     public class CountriesController : Controller
     {
         private readonly ICountryRepository countryRepository;

@@ -10,6 +10,7 @@ using static TravelAgency.Business.Constants;
 
 namespace TravelAgency.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly IAdminRepository adminRepository;
@@ -57,8 +58,10 @@ namespace TravelAgency.Web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
                 return View(adminViewModel);
 
-            var admin = mapper.Map<TravelAgency.DataAccessLayer.Entities.Admin>(adminViewModel);
+            var admin = mapper.Map<DataAccessLayer.Entities.Admin>(adminViewModel);
+            admin.Hash = adminRepository.GetByLogin(adminViewModel.Login).Hash;
             adminRepository.Update(admin);
+
             return RedirectToAction("List");
         }
 

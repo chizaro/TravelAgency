@@ -29,6 +29,7 @@ namespace TravelAgency.EntityFramework
 
         public DbSet<Order> Orders { get; set; }
 
+        public DbSet<Role> Roles { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

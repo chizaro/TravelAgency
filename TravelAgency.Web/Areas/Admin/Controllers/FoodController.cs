@@ -10,6 +10,7 @@ using TravelAgency.Web.Areas.Admin.Models.Food;
 
 namespace TravelAgency.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Tour manager")]
     public class FoodController : Controller
     {
         private readonly IFoodRepository foodRepository;

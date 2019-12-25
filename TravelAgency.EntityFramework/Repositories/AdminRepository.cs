@@ -16,7 +16,7 @@ namespace TravelAgency.EntityFramework.Repositories
 
         public Admin GetByLogin(string login)
         {
-            return dbSet.Where(a => a.Login == login).FirstOrDefault();
+            return dbSet.AsNoTracking().Where(a => a.Login == login).FirstOrDefault();
         }
 
         public (IList<Admin> admins, int count) GetPyPage(int pageNumber, int pageCapacity)

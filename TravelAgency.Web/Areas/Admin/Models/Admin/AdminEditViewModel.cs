@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TravelAgency.DataAccessLayer.Entities;
 
 namespace TravelAgency.Web.Areas.Admin.Models.Admin
 {
@@ -14,8 +15,6 @@ namespace TravelAgency.Web.Areas.Admin.Models.Admin
         public int Id { get; set; }
 
         [DisplayName("Логин: ")]
-        [Required(ErrorMessage = "Это обязательное поле")]
-        [StringLength(100, ErrorMessage = "Максимальная длина - 50 символов")]
         public string Login { get; set; }
 
         [DisplayName("Имя: ")]
@@ -27,5 +26,10 @@ namespace TravelAgency.Web.Areas.Admin.Models.Admin
         [Required(ErrorMessage = "Это обязательное поле")]
         [StringLength(100, ErrorMessage = "Максимальная длина - 100 символов")]
         public string LastName { get; set; }
+
+        [DisplayName("Роль: ")]
+        public int RoleId { get; set; }
+
+        public List<Role> Roles { get; set; } = new List<Role> { new Role { Name = string.Empty } };
     }
 }

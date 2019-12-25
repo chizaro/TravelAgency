@@ -14,10 +14,13 @@ namespace TravelAgency.Web.Areas.Admin.Controllers
     public class AccountController : Controller
     {
         private readonly IAdminRepository adminRepository;
+        private readonly IRoleRepository roleRepository;
         private readonly IMapper mapper;
-        public AccountController(IAdminRepository adminRepository, IMapper mapper)
+
+        public AccountController(IAdminRepository adminRepository, IRoleRepository roleRepository, IMapper mapper)
         {
             this.adminRepository = adminRepository;
+            this.roleRepository = roleRepository;
             this.mapper = mapper;
         }
 
@@ -48,7 +51,7 @@ namespace TravelAgency.Web.Areas.Admin.Controllers
                 ModelState.AddModelError("Password", "Неверный пароль");
                 return View();
             }
-            FormsAuthentication.SetAuthCookie(admin.Login, true);
+            CreateTicket(admin.Login, existedAdmin.Role?.Name ?? string.Empty);
             return RedirectToAction("Index", "Countries");
         }
 
@@ -72,7 +75,7 @@ namespace TravelAgency.Web.Areas.Admin.Controllers
             admin.Hash = hashing.HashCode;
             adminRepository.Save(admin);
 
-            FormsAuthentication.SetAuthCookie(registerViewModel.Login, true);
+            CreateTicket(registerViewModel.Login, string.Empty);
             return RedirectToAction("Index", "Tours");
         }
 
@@ -80,6 +83,25 @@ namespace TravelAgency.Web.Areas.Admin.Controllers
         public JsonResult IsUserExist(string login)
         {
             return Json(!adminRepository.IsExist(login), JsonRequestBehavior.AllowGet);
+        }
+
+        private void CreateTicket(string login, string role)
+        {
+            var ticket = new FormsAuthenticationTicket(
+                    version: 1,
+                    name: login,
+                    issueDate: DateTime.Now,
+                    expiration: DateTime.Now.AddMinutes(FormsAuthentication.Timeout.TotalMinutes),
+                    isPersistent: true,
+                    userData: role);
+
+            var encryptedTicket = FormsAuthentication.Encrypt(ticket);
+
+            var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket)
+            {
+                Expires = ticket.Expiration
+            };
+            HttpContext.Response.Cookies.Add(cookie);
         }
     }
 }

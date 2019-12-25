@@ -28,6 +28,7 @@ namespace TravelAgency.Web.Ninject
             Bind<ITourRepository>().To<TourRepository>();
             Bind<ITourPageRepository>().To<TourPageRepository>();
             Bind<IAdminRepository>().To<AdminRepository>();
+            Bind<IRoleRepository>().To<RoleRepository>();
             Bind<IOrderRepository>().To<OrderRepository>();
 
             var mapperConfiguration = new AutoMapperConfig().Configure();

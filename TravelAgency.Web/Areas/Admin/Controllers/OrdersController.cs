@@ -11,6 +11,7 @@ using static TravelAgency.Business.Constants;
 
 namespace TravelAgency.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Operator")]
     public class OrdersController : Controller
     {
         private readonly IOrderRepository orderRepository;

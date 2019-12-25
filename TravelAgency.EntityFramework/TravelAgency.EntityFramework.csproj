@@ -59,6 +59,7 @@
     <Compile Include="Repositories\HotelRepository.cs" />
     <Compile Include="Repositories\HotelTypeRepository.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />
+    <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\SaleRepository.cs" />
     <Compile Include="Repositories\TourPageRepository.cs" />
     <Compile Include="Repositories\TourRepository.cs" />

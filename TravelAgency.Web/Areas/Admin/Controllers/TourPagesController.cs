@@ -12,6 +12,7 @@ using static TravelAgency.Business.Constants;
 
 namespace TravelAgency.Web.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin,Tour manager")]
     public class TourPagesController : Controller
     {
         private readonly ITourPageRepository tourPageRepository;

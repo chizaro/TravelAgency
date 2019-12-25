@@ -13,5 +13,7 @@ namespace TravelAgency.DataAccessLayer.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Hash { get; set; }
+        public int? RoleId { get; set; }
+        public virtual Role Role { get; set; }
     }
 }
